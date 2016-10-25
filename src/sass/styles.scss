@@ -1,20 +1,27 @@
 body {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
 
-h1 {
+  h1 {
     text-align: center;
-}
+  }
 
+  #container {
+    svg {
+      display: block;
+      margin: 100px auto;
+      border: 2px solid black;
+      padding: 100px;
 
-.bar {
-    fill: blue;
-}
+      .bar {
+        fill: blue;
+      }
+      .bar:hover {
+          fill: red;
+      }
+    }
+  }
 
-svg {
-    display: block;
-    margin: 100px auto;
-    border: 2px solid black;
 }
