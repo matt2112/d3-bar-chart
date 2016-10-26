@@ -14,16 +14,21 @@ $(document).ready(() => {
         .attr("width", WIDTH)
         .attr("height", HEIGHT)
 
+    // function to be called when json data is ready to be processed
     const processData = (dataset) => {
 
-        const xScale = d3.scaleLinear()
-            .domain([0, dataset.length])
+        const minDate = new Date(dataset[0][0]);
+        const maxDate = new Date(dataset[dataset.length - 1][0]);
+
+        const xScale = d3.scaleTime()
+            .domain([minDate, maxDate])
             .range([0, WIDTH]);
 
         const yScale = d3.scaleLinear()
             .domain([0, d3.max(dataset, (d) => d[1])])
             .range([HEIGHT, 0]);
 
+        // create x axis
         const bottomAxis = d3.axisBottom()
             .ticks(10)
             .scale(xScale);
@@ -32,12 +37,26 @@ $(document).ready(() => {
             .attr("transform", "translate(0, " + HEIGHT + ")")
             .call(bottomAxis)
 
+        // label x axis
+        canvas.append("text")
+            .attr("x", WIDTH / 2)
+            .attr("y", HEIGHT + 50)
+            .text("Year");
+
+        // create y axis
         const leftAxis = d3.axisLeft()
             .ticks(10)
             .scale(yScale);
 
         canvas.append("g")
             .call(leftAxis);
+
+        // label y axis
+        canvas.append("text")
+            .attr("text-anchor", "end")
+            .attr("y", 20)
+            .attr("transform", "rotate(-90)")
+            .text("Billions of Dollars");
 
         canvas.selectAll("rect")
             .data(dataset)
