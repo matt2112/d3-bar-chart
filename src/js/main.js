@@ -59,11 +59,9 @@ const processData = (dataset) => {
     // initialize tooltip
     const tip = d3Tip()
         .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html((d) => `<div>
-                        <p>Date:</p>` + d[0] +
-                        `<p>Amount:</p>` + d[1] +
-                    `</div`)
+        .offset([-30, -20])
+        .html((d) => '<div><p>Date: ' + d[0] + '</p>' +
+            '<p>Amount: $' + d[1] + 'B</p></div')
 
     canvas.call(tip)
 

@@ -1,28 +1,38 @@
+$red: rgba(204, 41, 0, 0.8);
+$blue: rgba(0, 200, 230, 0.9);
 body {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  margin: 0;
-
-  h1 {
-    text-align: center;
-  }
-
-  #container {
-    svg {
-      display: block;
-      margin: 50px auto;
-      border: 2px solid black;
-      padding: 100px;
-
-      .bar {
-        fill: blue;
-      }
-
-      .bar:hover {
-        fill: red;
-      }
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    background-color: #aaa;
+    h1 {
+        text-align: center;
+        text-decoration: underline;
     }
-  }
-
+    #container {
+        svg {
+            background-color: #fff;
+            box-shadow: 0 3px 10px 1px #333;
+            display: block;
+            margin: 50px auto;
+            border: 2px solid black;
+            padding: 100px;
+            .bar {
+                fill: $blue;
+            }
+            .bar:hover {
+                fill: $red;
+            }
+        }
+    }
+    .d3-tip {
+        background-color: $red;
+        color: white;
+        padding: {
+            left: 5px;
+            right: 5px;
+        }
+        border-radius: 3px;
+    }
 }
