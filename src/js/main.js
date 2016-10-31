@@ -29,6 +29,7 @@ const processData = (dataset) => {
     // create x axis
     const bottomAxis = d3.axisBottom()
         .ticks(10)
+        .tickSizeOuter(0)
         .scale(xScale);
 
     canvas.append("g")
@@ -44,6 +45,7 @@ const processData = (dataset) => {
     // create y axis
     const leftAxis = d3.axisLeft()
         .ticks(10)
+        .tickSizeOuter(0)
         .scale(yScale);
 
     canvas.append("g")
@@ -52,15 +54,19 @@ const processData = (dataset) => {
     // label y axis
     canvas.append("text")
         .attr("text-anchor", "end")
-        .attr("y", 20)
+        .attr("y", 23)
         .attr("transform", "rotate(-90)")
         .text("Billions of Dollars");
+    
+    // functions to format time
+    const parse = d3.timeParse('%Y-%m-%d');
+    const format = d3.timeFormat('%B %Y');
 
     // initialize tooltip
     const tip = d3Tip()
         .attr('class', 'd3-tip')
         .offset([-30, -20])
-        .html((d) => '<div><p>Date: ' + d[0] + '</p>' +
+        .html((d) => '<div><p>Date: ' + format(parse(d[0])) + '</p>' +
             '<p>Amount: $' + d[1] + 'B</p></div')
 
     canvas.call(tip)
